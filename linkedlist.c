@@ -84,7 +84,14 @@ bool insertAfter(Linklist &L,LNode *p,ElemType e)
     if(s == NULL)
     return false;
     s->data = e;
-    s->next = p->next;
+    if(p->next == NULL) //判断是否是最后一个结点
+    {
+        s->next = NULL;
+    }
+    else
+    {
+        s->next = p->next;
+    }
     p->next = s;
     return true;
 }
@@ -118,7 +125,7 @@ bool deleteElem(Linklist &L,int i)
     if(p == null)
     return false;
     q = p->next
-    if(q == null) //p是最后一位
+    if(q == null) //删除和添加一定要判断p是最后一位
     {
         q = GetElem(L,i-1);
         q ->next = null;
@@ -129,4 +136,42 @@ bool deleteElem(Linklist &L,int i)
     p->next = q->next;
     free(q);
     return true;
+}
+
+//带头结点的头插法
+Linklist List_HeadInsert(Linklist &L)
+{
+    int x;
+    LNode *s = NULL;
+    L = (Linklist)malloc(sizeof(LNode));
+    L -> next = NULL;    //别忘了初始化next！！！！（必须）
+    scanf("%d",&x);
+    while(x!=9999)
+    {
+       s = (LNode *)malloc(sizeof(LNode));
+       s->data = x;
+       s->next = L->next;
+       L->next = s;
+    }
+    return L;
+}
+
+Linklist List_TailInsert(Linklist &L)
+{
+     int x;
+     LNode *s = NULL;  //新建结点
+     LNode *t = L;  //尾结点 
+     L = (Linklist)malloc(sizeof(LNode));
+     L -> next = NULL;    //这里可以省略next！！！！
+     scanf("%d",&x);
+     while (x!=9999)
+     {
+       s = (LNode *)malloc(sizeof(LNode));
+       s->data = x;
+       s->next = NULL;
+       t->next = s;
+       t = s; 
+     }
+     return L;
+     
 }
