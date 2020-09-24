@@ -2,7 +2,7 @@
 
 typedef struct LNode{
 ElemType data;
-struct LNode *next;
+struct LNode *next; //这种写法是为了区别开来，next为内部的指针，Linklist为头指针，代指整个链表
 }LNode,*Linklist;
 
 //没有头节点的初始化方式
